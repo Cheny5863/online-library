@@ -1,0 +1,316 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+body{
+    background-color: rgba(15, 70, 87, 0.685);
+    height: 100vh;
+}
+#mask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(34, 34, 34, 0.548);
+    z-index: 5;
+    display: none;
+}
+a{
+    text-decoration: none;
+}
+.header{
+    width: 100%;
+    height: 55px;
+    background-color: #446182;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    #logoAndTitle,#tipBox,#searchBox{
+        display: flex;
+        align-items: center;//上下对齐,对子元素而言
+    }
+
+    #logoAndTitle{
+        min-width: 200px;
+        margin-left: 20px;
+        #logoBG{
+            background-color: #7098BD;
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            position: relative;
+            #logo{
+                position: absolute;
+                top: 7px;
+                left: 7px;
+                width: 32px;
+                margin: 0 auto;
+            }
+            
+        }
+        #title{
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+    }
+    
+    #tipBox{
+        min-width: 500px;
+        #bg{
+            display: flex;
+            background-color: #7098BD;
+            padding: 3px 10px;
+            align-items: center;
+            -webkit-border-radius:8px;
+            -moz-border-radius:8px;
+            img{
+                height: 28px;
+        
+            }
+
+            #tipText{
+                margin-left: 5px;
+                font-size: medium;
+            }
+        }
+    
+    }
+    
+    #searchBox{
+        min-width: 300px;
+        margin-right: 20px;
+        #input{
+            background-color: rgba(0, 0, 0, 0);
+            border: solid 2px #fff;
+            border-radius: 15px;
+            padding: 5px;
+            width: 200px;
+        }
+        input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+
+            color : #eee;
+        
+        }
+        
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        
+            color : #eee;
+        
+        }
+        
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        
+            color : #eee;
+        
+        }
+        
+        input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color : #eee;
+        
+        }
+        
+        input::-ms-input-placeholder { /* Microsoft Edge */
+            color : #eee;
+        
+        }
+        #btn{
+            color: white;
+            margin-left: 20px;
+            width: 70px;
+            height: 30px;
+            border-radius: 20px;
+            background-color: #7098BD;
+        }
+    }
+
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    height: calc(100% - 55px);//填满导航栏之外的高度
+    color: white;
+
+    #menuBox{
+        background-color: #537297;
+        width: 250px;
+        #menu{
+            width: 100%;
+            li{
+                width: 100%;
+                background-color: #4B688A;
+                height: 60px;
+                .liBox{
+                    width: 70%;
+                    margin: 0 auto;
+                    line-height: 60px;
+                    img{
+                        width: 20px;
+                        height: 26px;
+                        vertical-align: middle; //同一行上元素上下对齐
+                    }
+                    a{
+                        margin-left: 5px;
+                        color: white;
+                    }
+                }
+            }
+    
+            li:hover{
+                position: relative;
+                background-image: linear-gradient(120deg, #7da7eb 0%, #c2e9fb 100%);
+                
+            }
+            
+            .selectedLi{
+                position: relative;
+                background-color: #7098BD;
+                #selected{
+                    position: absolute; 
+                    left: 0px;
+                    background-color: #fff;
+                    height: 100%;
+                    width: 8px;
+                }
+            }
+        }
+    }
+    
+    .contentBox{
+        background-color: #eee;
+        width: 100%;
+        padding: 12px;
+        .content{
+            border-radius: 20px;
+            background-color: white;
+            width: 100%;
+            height: 100%;
+            #bookManagerArea{
+                
+                width: 100%;
+                height: auto;
+                display: none;
+                .containerTable{
+                    width: 100%;
+                    color: #446182;
+                    #toolBar{
+                        padding: 5px;
+                        div{
+                            display: inline-block;
+                            line-height: 40px;
+                            height: 40px;
+                            background-color: #7098BD;
+                            padding: 0 15px;
+                            border-radius: 20px;
+                            color: white;
+                            font-weight: bold;
+                            margin-left: 15px;
+                        }
+
+                    }
+
+                    #seperator{
+                        width: 100%;
+                        height: 5px;
+                        background-image: linear-gradient(120deg, #3be8ff 0%,rgb(133, 241, 70) 25%, #af5df1 50%, rgb(238, 110, 117) 75% , rgb(81, 166, 245) 100%);
+
+                    }
+                    #tableBook{
+                        width: 100%;
+                        text-align: center;
+                        border-collapse: collapse;
+                        tr th,tr td{
+                            border: solid 1px #7098BD;
+                        }
+                        
+                        th{
+                            height: 50px;
+                            background-color: #4B688A;
+                            color: white;
+                        }
+
+                        td{
+                            height: 40px;
+                        }
+
+                        .manipulateBox{
+                            display: flex;
+                            #deleteBox{
+                                border-right: solid #eee 1px;
+                                flex: 1;
+                            }
+                            #editBox{
+                                flex: 1;
+                            }
+                        }
+                    }
+                 }
+            }
+            
+            #inputBox{
+                position: absolute;
+                width: 600px;
+                display: none;
+                padding: 10px;
+                left: calc(50% - 300px);
+                top: 50px;
+                background-color: white;
+                color: black;
+                border-radius: 30px;
+                box-shadow: 0px 0px 30px rgba(0,0,0,.5);
+                font-weight: bold;
+                z-index: 999;
+                #inputTable{
+                    input{
+                        background-color: rgba(0, 0, 0, 0);
+                        border: solid 2px rgb(0, 0, 0);
+                        border-radius: 20px;
+                        padding: 5px;
+                        width: 200px;
+                        margin-top: 5px;
+                    }
+                    #type{
+                        width: 20px;
+                    }
+                    #introduceBox{
+                        textarea{
+                            padding: 10px;
+                            height: 300px;
+                            width: 400px;
+                            resize: none;
+                            border: solid 2px rgb(0, 0, 0);
+                            border-radius: 20px;
+                        }
+                    }
+    
+                    .title{
+                        width: 100px;
+                    }
+                }
+                #controlBox{
+                    margin-top: 20px;
+                    display: flex;
+                    justify-content: space-around;
+                    input{
+                        color: white;
+                        margin-left: 20px;
+                        width: 120px;
+                        height: 40px;
+                        border-radius: 20px;
+                        background-color: #7098BD;
+                    }
+                }
+            }
+
+            #myBookselfArea{
+                width: 100%;
+                height: 100px;
+                background-color: #446182;
+                display: none;
+            }
+        }
+    }
+}

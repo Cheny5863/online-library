@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网上书店后台管理系统</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="Shortcut Icon" href="../images/titleIco.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="mask"></div>
+
+    <div class="header">
+        <div id="logoAndTitle">
+            <div id="logoBG">
+                <img src="../images/book.png" alt="logo" id="logo">
+            </div>
+            <div id="title">我的图书馆</div>
+        </div>
+
+        <div id="tipBox">
+            <div id="bg">
+                <img src="../images/tip.png" alt="tip">
+                <div id="tipText">《Qt开发与实践》已购38天，阅读2次，上次阅读是15天前</div>
+            </div>
+        </div>
+
+        <div id="searchBox">
+            <input id="input" type="text" placeholder="快捷搜索">
+            <input id="btn" type="button" value="搜 索">
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="menuBox">
+            <ul id="menu">
+                <li id="bookManager">
+                    <div id="selected"></div>
+                    <div class="liBox" >
+                        <img src="../images/infologo.png" alt="">
+                        <a href="#" >书籍管理</a> 
+                    </div>
+                </li>
+                <li id="myBookself"> 
+                    <div id="selected"></div>
+                    <div class="liBox">
+                        <img src="../images/bookself.png" alt="">
+                        <a href="#">我的书架</a> 
+                    </div>
+                </li>
+                <li id="other1"> 
+                    <div id="selected"></div>
+                    <div class="liBox">
+                        <img src="../images/infologo.png" alt="">
+                        <a href="#">书籍管理</a> 
+                    </div>
+                </li>
+                <li id="other2"> 
+                    <div id="selected"></div>
+                    <div class="liBox">
+                        <img src="../images/infologo.png" alt="">
+                        <a href="#">书籍管理</a> 
+                    </div>
+                </li>
+                <li id="other3"> 
+                    <div id="selected"></div>
+                    <div class="liBox">
+                        <img src="../images/infologo.png" alt="">
+                        <a href="#">书籍管理</a> 
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="contentBox">
+            <div class="content">
+                <div id="bookManagerArea">
+                    <div class="containerTable">
+                        <div id="toolBar">
+                            <div id="addBook" onclick="addBook()">添加书籍</div>
+                            <div id="searchBook">查找书籍</div>
+                        </div>
+                        
+                        <div id="seperator"></div>
+
+                        <table id="tableBook">
+                           
+                        </table>
+                    </div>
+                </div>
+                
+                <div id="myBookselfArea">
+
+                </div>
+
+
+                <div id="inputBox">
+                    <form action="" method="post" onsubmit="return false" name="bookForm">
+                        <table id="inputTable">
+                            <tr>
+                                <td class="title">书号：</td>
+                                <td><input type="text" id="bookNum" name="bookNum"></td>
+                            </tr>
+                            <tr>
+                                <td class="title">书名：</td>
+                                <td><input type="text" id="bookName" name="bookName"></td>
+                            </tr>
+                            <tr>
+                                <td class="title">作者：</td>
+                                <td><input type="text" id="author" name="author"></td>
+                            </tr>
+                            <tr>
+                                <td class="title">出版社：</td>
+                                <td><select name="press" id="selector">
+                                    <option value="清华大学出版社">清华大学出版社</option>
+                                    <option value="人民教育出版社">人民教育出版社</option>
+                                    <option value="人民文学出版社">人民文学出版社</option>
+                                    <option value="机械工业出版社">机械工业出版社</option>
+                                </select></td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">出版日期：</td>
+                                <td><input id="publishDate" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td class="title">价格：</td>
+                                <td><input id="price" type="number"></td>
+                            </tr>
+                            <tr>
+                                <td class="title">库存位置：</td>
+                                <td><input id="location" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td class="title">类型：</td>
+                                <td>
+                                    
+                                    <input id="type" type="radio" name="bookType" value="普通" checked>普通
+                                    <input id="type" type="radio" name="bookType" value="新书" checked>新书
+                                    <input id="type" type="radio" name="bookType" value="精品" checked>精品
+                                    
+                                </td>
+                            </tr>
+                            <tr id="introduceBox">
+                                <td class="title">内容简介：</td>
+                                <td>
+                                    <textarea></textarea>
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        <div id="controlBox">
+                            <input type="button" onclick="cancelInput()" value="取消">
+                            <input type="submit" onclick="confirmSubmit()" value="确认">
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script> 
+    
+/*****************************************全局变量***************************************************************/
+    //获取菜单栏第一个元素 默认它为选中状态
+    var selectedItem = $("#menu li:first")[0]
+    selectedItem.className = "selectedLi"
+    var bookList = [
+        {
+            ISBN : "ISBN-001",
+            name : "Web应用系统开发",
+            author : "范月华",
+            press : "清华大学出版社",
+            bookStatus : "新书",
+            price : 28,
+        },
+        {
+            ISBN : "ISBN-002",
+            name : "Web应用系统开发",
+            author : "范月华",
+            press : "清华大学出版社",
+            bookStatus : "新书",
+            price : 28,
+        },
+        {
+            ISBN : "ISBN-003",
+            name : "Web应用系统开发",
+            author : "范月华",
+            press : "清华大学出版社",
+            bookStatus : "新书",
+            price : 28,
+        },
+        {
+            ISBN : "ISBN-004",
+            name : "Web应用系统开发",
+            author : "范月华",
+            press : "清华大学出版社",
+            bookStatus : "新书",
+            price : 28,
+        },
+        {
+            ISBN : "ISBN-005",
+            name : "Web应用系统开发",
+            author : "范月华",
+            press : "清华大学出版社",
+            bookStatus : "新书",
+            price : 28,
+        }
+    ]
+    
+    //主函数
+    main()
+
+
+
+
+
+
+    /*********************************以下为函数定义*******************************/
+    function main(){
+        
+        $("#"+selectedItem.id+"Area").show()
+        //加载书籍数据并显示
+        showBookData()
+        
+        //待网页加载完成后绑定点击事件
+        $(function(){
+            $("#menu li").click(function(e){
+                changeMenu(e.currentTarget);
+            })
+        })
+        
+    }
+
+
+   
+
+    //展示书籍的函数
+    function showBookData(){
+        var isSingle = true
+        var table = $("#tableBook")[0]
+        //设置表头
+        table.innerHTML = "<tr><th>书号</th><th>书名</th><th>作者</th><th>出版社</th><th>类别</th><th>单价</th><th>操作</th></tr>"
+
+        bookList.forEach(element=>{
+            isSingle = !isSingle
+            var newRow = document.createElement("tr")
+            newRow.id = element.ISBN
+            if(isSingle){
+                newRow.style.backgroundColor = "#D9E2E7"
+            }
+            for(index in element){
+                var newCell = document.createElement("td")
+                newCell.innerText = element[index]
+                newRow.append(newCell)
+            }
+            var manipulator = document.createElement("td");
+            manipulator.innerHTML = '<div class="manipulateBox"><div id="deleteBox"><img src="../images/delete.png" alt="删除"></div><div id="editBox"><img src="../images/edit.png" alt="编辑"></div></div>'
+            newRow.append(manipulator)
+            table.append(newRow)
+        })
+        
+        //给删除按钮绑定删除事件
+        $("#tableBook #deleteBox").click(function(e){
+            deleteItem(e)
+        })
+        $("#tableBook #editBox").click(function(e){
+            editItem(e)
+        })
+    }
+
+    //书籍管理的删除按钮事件
+    function deleteItem(e){
+        //获取被删除行的ID
+        var deleteTargetID = e.currentTarget.parentNode.parentElement.parentElement.id
+        $("#tableBook tr").remove("#"+deleteTargetID)
+        //删除数组中元素
+        for (let i = 0; i < bookList.length; i++) {
+            const element = bookList[i];
+            if(element.ISBN == deleteTargetID){
+                bookList.splice(i,1)
+            }
+        }
+        showBookData()
+    }
+
+    //书籍管理的编辑按钮事件
+    function editItem(e){
+        inputTrigger(true)
+    }
+
+    //书籍管理的添加书籍按钮事件
+    function confirmSubmit(){
+        
+        var ISBN_ = bookForm.bookNum.value
+        var name_ = bookForm.bookName.value
+        var author_ = bookForm.author.value
+        var press_ = bookForm.press.value
+        var bookStatus_ = bookForm.type.value
+        var price_ = bookForm.price.value
+        if(ISBN_ != ""  && name_ != "" && author_ != "" && press_ != "" && bookStatus_ != "" && price_ != ""){
+            console.log("数据校验通过")
+            var newBook = {
+                ISBN : ISBN_,
+                name : name_,
+                author : author_,
+                press : press_,
+                bookStatus : bookStatus_,
+                price : price_
+            }
+            bookList.push(newBook)
+            inputTrigger(false)
+            showBookData()
+            
+        }else{
+            console.log("数据不能为空")
+        }
+        return false
+    }
+
+    //书籍管理的取消输入按钮事件
+    function cancelInput(){
+        inputTrigger(false);
+    }
+
+     //添加书籍按钮点击事件
+     function addBook(){
+        inputTrigger(true)
+    }
+
+    //输入模式开关
+    function inputTrigger(ifOpen){
+        if(ifOpen){
+            $("#mask").show()
+            $("#inputBox").show()
+        }else{
+            $("#mask").hide()
+            $("#inputBox").hide()
+        }
+    }
+
+    /*菜单部分*/
+    //菜单栏被点击后进行的操作
+    function changeMenu(currentTarget){
+        if(selectedItem != null && selectedItem.id != currentTarget.id){
+            selectedItem.className = ""
+            $("#"+selectedItem.id+"Area").hide()
+        }
+        selectedItem = currentTarget
+        $("#"+selectedItem.id+"Area").show() //显示被选择菜单项的内容
+        selectedItem.className = "selectedLi" //给选中的菜单项更改类名 进而更换样式
+    
+    }
+
+   
+</script>
+
+</html>
