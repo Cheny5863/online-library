@@ -65,8 +65,7 @@ a {
   background-color: #7098BD;
   padding: 3px 10px;
   align-items: center;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
+  border-radius: 8px;
 }
 .header #tipBox #bg img {
   height: 28px;

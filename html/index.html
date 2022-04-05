@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>网上书店后台管理系统</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="Shortcut Icon" href="../images/titleIco.png" type="image/x-icon">
 </head>
 
@@ -39,37 +41,37 @@
             <ul id="menu">
                 <li id="bookManager">
                     <div id="selected"></div>
-                    <div class="liBox" >
+                    <div class="liBox">
                         <img src="../images/infologo.png" alt="">
-                        <a href="#" >书籍管理</a> 
+                        <a href="#">书籍管理</a>
                     </div>
                 </li>
-                <li id="myBookself"> 
+                <li id="myBookself">
                     <div id="selected"></div>
                     <div class="liBox">
                         <img src="../images/bookself.png" alt="">
-                        <a href="#">我的书架</a> 
+                        <a href="#">我的书架</a>
                     </div>
                 </li>
-                <li id="other1"> 
+                <li id="other1">
                     <div id="selected"></div>
                     <div class="liBox">
                         <img src="../images/infologo.png" alt="">
-                        <a href="#">书籍管理</a> 
+                        <a href="#">书籍管理</a>
                     </div>
                 </li>
-                <li id="other2"> 
+                <li id="other2">
                     <div id="selected"></div>
                     <div class="liBox">
                         <img src="../images/infologo.png" alt="">
-                        <a href="#">书籍管理</a> 
+                        <a href="#">书籍管理</a>
                     </div>
                 </li>
-                <li id="other3"> 
+                <li id="other3">
                     <div id="selected"></div>
                     <div class="liBox">
                         <img src="../images/infologo.png" alt="">
-                        <a href="#">书籍管理</a> 
+                        <a href="#">书籍管理</a>
                     </div>
                 </li>
             </ul>
@@ -83,15 +85,15 @@
                             <div id="addBook" onclick="addBook()">添加书籍</div>
                             <div id="searchBook">查找书籍</div>
                         </div>
-                        
+
                         <div id="seperator"></div>
 
                         <table id="tableBook">
-                           
+
                         </table>
                     </div>
                 </div>
-                
+
                 <div id="myBookselfArea">
 
                 </div>
@@ -115,11 +117,11 @@
                             <tr>
                                 <td class="title">出版社：</td>
                                 <td><select name="press" id="selector">
-                                    <option value="清华大学出版社">清华大学出版社</option>
-                                    <option value="人民教育出版社">人民教育出版社</option>
-                                    <option value="人民文学出版社">人民文学出版社</option>
-                                    <option value="机械工业出版社">机械工业出版社</option>
-                                </select></td>
+                                        <option value="清华大学出版社">清华大学出版社</option>
+                                        <option value="人民教育出版社">人民教育出版社</option>
+                                        <option value="人民文学出版社">人民文学出版社</option>
+                                        <option value="机械工业出版社">机械工业出版社</option>
+                                    </select></td>
                             </tr>
 
                             <tr>
@@ -137,11 +139,11 @@
                             <tr>
                                 <td class="title">类型：</td>
                                 <td>
-                                    
+
                                     <input id="type" type="radio" name="bookType" value="普通" checked>普通
                                     <input id="type" type="radio" name="bookType" value="新书" checked>新书
                                     <input id="type" type="radio" name="bookType" value="精品" checked>精品
-                                    
+
                                 </td>
                             </tr>
                             <tr id="introduceBox">
@@ -150,68 +152,68 @@
                                     <textarea></textarea>
                                 </td>
                             </tr>
-                            
+
                         </table>
                         <div id="controlBox">
                             <input type="button" onclick="cancelInput()" value="取消">
-                            <input type="submit" onclick="confirmSubmit()" value="确认">
+                            <input id="confirmInput" type="submit" value="确认">
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script> 
-    
-/*****************************************全局变量***************************************************************/
+<script>
+
+    /*****************************************全局变量***************************************************************/
     //获取菜单栏第一个元素 默认它为选中状态
     var selectedItem = $("#menu li:first")[0]
     selectedItem.className = "selectedLi"
     var bookList = [
         {
-            ISBN : "ISBN-001",
-            name : "Web应用系统开发",
-            author : "范月华",
-            press : "清华大学出版社",
-            bookStatus : "新书",
-            price : 28,
+            ISBN: "ISBN-001",
+            name: "Web应用系统开发",
+            author: "范月华",
+            press: "清华大学出版社",
+            bookStatus: "新书",
+            price: 28,
         },
         {
-            ISBN : "ISBN-002",
-            name : "Web应用系统开发",
-            author : "范月华",
-            press : "清华大学出版社",
-            bookStatus : "新书",
-            price : 28,
+            ISBN: "ISBN-002",
+            name: "Web应用系统开发",
+            author: "范月华",
+            press: "清华大学出版社",
+            bookStatus: "新书",
+            price: 28,
         },
         {
-            ISBN : "ISBN-003",
-            name : "Web应用系统开发",
-            author : "范月华",
-            press : "清华大学出版社",
-            bookStatus : "新书",
-            price : 28,
+            ISBN: "ISBN-003",
+            name: "Web应用系统开发",
+            author: "范月华",
+            press: "清华大学出版社",
+            bookStatus: "新书",
+            price: 28,
         },
         {
-            ISBN : "ISBN-004",
-            name : "Web应用系统开发",
-            author : "范月华",
-            press : "清华大学出版社",
-            bookStatus : "新书",
-            price : 28,
+            ISBN: "ISBN-004",
+            name: "Web应用系统开发",
+            author: "范月华",
+            press: "清华大学出版社",
+            bookStatus: "新书",
+            price: 28,
         },
         {
-            ISBN : "ISBN-005",
-            name : "Web应用系统开发",
-            author : "范月华",
-            press : "清华大学出版社",
-            bookStatus : "新书",
-            price : 28,
+            ISBN: "ISBN-005",
+            name: "Web应用系统开发",
+            author: "范月华",
+            press: "清华大学出版社",
+            bookStatus: "新书",
+            price: 28,
         }
     ]
-    
+
     //主函数
     main()
 
@@ -221,39 +223,39 @@
 
 
     /*********************************以下为函数定义*******************************/
-    function main(){
-        
-        $("#"+selectedItem.id+"Area").show()
+    function main() {
+
+        $("#" + selectedItem.id + "Area").show()
         //加载书籍数据并显示
         showBookData()
-        
+
         //待网页加载完成后绑定点击事件
-        $(function(){
-            $("#menu li").click(function(e){
+        $(function () {
+            $("#menu li").click(function (e) {
                 changeMenu(e.currentTarget);
             })
         })
-        
+
     }
 
 
-   
+
 
     //展示书籍的函数
-    function showBookData(){
+    function showBookData() {
         var isSingle = true
         var table = $("#tableBook")[0]
         //设置表头
         table.innerHTML = "<tr><th>书号</th><th>书名</th><th>作者</th><th>出版社</th><th>类别</th><th>单价</th><th>操作</th></tr>"
 
-        bookList.forEach(element=>{
+        bookList.forEach(element => {
             isSingle = !isSingle
             var newRow = document.createElement("tr")
             newRow.id = element.ISBN
-            if(isSingle){
+            if (isSingle) {
                 newRow.style.backgroundColor = "#D9E2E7"
             }
-            for(index in element){
+            for (index in element) {
                 var newCell = document.createElement("td")
                 newCell.innerText = element[index]
                 newRow.append(newCell)
@@ -263,81 +265,141 @@
             newRow.append(manipulator)
             table.append(newRow)
         })
-        
+
         //给删除按钮绑定删除事件
-        $("#tableBook #deleteBox").click(function(e){
+        $("#tableBook #deleteBox").click(function (e) {
             deleteItem(e)
         })
-        $("#tableBook #editBox").click(function(e){
+        $("#tableBook #editBox").click(function (e) {
             editItem(e)
         })
     }
 
     //书籍管理的删除按钮事件
-    function deleteItem(e){
+    function deleteItem(e) {
         //获取被删除行的ID
         var deleteTargetID = e.currentTarget.parentNode.parentElement.parentElement.id
-        $("#tableBook tr").remove("#"+deleteTargetID)
+        $("#tableBook tr").remove("#" + deleteTargetID)
         //删除数组中元素
         for (let i = 0; i < bookList.length; i++) {
             const element = bookList[i];
-            if(element.ISBN == deleteTargetID){
-                bookList.splice(i,1)
+            //删除指定数据
+            if (element.ISBN == deleteTargetID) {
+                bookList.splice(i, 1)
+                break
             }
         }
         showBookData()
     }
 
     //书籍管理的编辑按钮事件
-    function editItem(e){
+    function editItem(e) {
+        $("#confirmInput").click(confirmRevise)
+        //获取被修改行的ID
+        var reviseTargetID = e.currentTarget.parentNode.parentElement.parentElement.id
+        //修改数组中元素
+        for (let i = 0; i < bookList.length; i++) {
+            const element = bookList[i];
+            //修改指定数据
+            if (element.ISBN == reviseTargetID) {
+                bookForm.bookNum.value = element.ISBN
+                bookForm.bookName.value = element.name
+                bookForm.author.value = element.author
+                bookForm.press.value = element.press
+                bookForm.type.value = element.bookStatus
+                bookForm.price.value = element.price
+                break
+            }
+        }
         inputTrigger(true)
     }
 
     //书籍管理的添加书籍按钮事件
-    function confirmSubmit(){
-        
+    function confirmSubmit() {
+
+        if (verifyInput()) {
+            var newBook = {
+                ISBN: ISBN_,
+                name: name_,
+                author: author_,
+                press: press_,
+                bookStatus: bookStatus_,
+                price: price_
+            }
+            bookList.push(newBook)
+            inputTrigger(false)
+            showBookData()
+
+        }
+        emptyInput()
+        return false
+    }
+
+    //确认修改
+    function confirmRevise() {
+        if (verifyInput()) {
+            var reviseTargetID = bookForm.bookNum.value
+            for (let i = 0; i < bookList.length; i++) {
+                const element = bookList[i];
+                //修改指定数据
+                if (element.ISBN == reviseTargetID) {
+                    element.ISBN = bookForm.bookNum.value
+                    element.name = bookForm.bookName.value
+                    element.author = bookForm.author.value
+                    element.press = bookForm.press.value
+                    element.bookStatus = bookForm.type.value
+                    element.price = bookForm.price.value
+                    break
+                }
+            }
+            inputTrigger(false)
+            showBookData()
+        }
+    }
+
+    //校验数据输入
+    function verifyInput() {
         var ISBN_ = bookForm.bookNum.value
         var name_ = bookForm.bookName.value
         var author_ = bookForm.author.value
         var press_ = bookForm.press.value
         var bookStatus_ = bookForm.type.value
         var price_ = bookForm.price.value
-        if(ISBN_ != ""  && name_ != "" && author_ != "" && press_ != "" && bookStatus_ != "" && price_ != ""){
-            console.log("数据校验通过")
-            var newBook = {
-                ISBN : ISBN_,
-                name : name_,
-                author : author_,
-                press : press_,
-                bookStatus : bookStatus_,
-                price : price_
-            }
-            bookList.push(newBook)
-            inputTrigger(false)
-            showBookData()
-            
-        }else{
-            console.log("数据不能为空")
+        if (ISBN_ != "" && name_ != "" && author_ != "" && press_ != "" && bookStatus_ != "" && price_ != "") {
+            return true
+        } else {
+            alert("数据填写不完全")
+            return false
         }
-        return false
+    }
+
+    //清空输入的内容
+    function emptyInput() {
+        bookForm.bookNum.value = ""
+        bookForm.bookName.value = ""
+        bookForm.author.value = ""
+        bookForm.type.value = ""
+        bookForm.price.value = ""
     }
 
     //书籍管理的取消输入按钮事件
-    function cancelInput(){
+    function cancelInput() {
         inputTrigger(false);
+        emptyInput()
     }
 
-     //添加书籍按钮点击事件
-     function addBook(){
+    //添加书籍按钮点击事件
+    function addBook() {
+        $("#confirmInput").click(confirmSubmit)
         inputTrigger(true)
     }
 
     //输入模式开关
-    function inputTrigger(ifOpen){
-        if(ifOpen){
+    function inputTrigger(ifOpen) {
+        if (ifOpen) {
             $("#mask").show()
             $("#inputBox").show()
-        }else{
+        } else {
             $("#mask").hide()
             $("#inputBox").hide()
         }
@@ -345,18 +407,18 @@
 
     /*菜单部分*/
     //菜单栏被点击后进行的操作
-    function changeMenu(currentTarget){
-        if(selectedItem != null && selectedItem.id != currentTarget.id){
+    function changeMenu(currentTarget) {
+        if (selectedItem != null && selectedItem.id != currentTarget.id) {
             selectedItem.className = ""
-            $("#"+selectedItem.id+"Area").hide()
+            $("#" + selectedItem.id + "Area").hide()
         }
         selectedItem = currentTarget
-        $("#"+selectedItem.id+"Area").show() //显示被选择菜单项的内容
+        $("#" + selectedItem.id + "Area").show() //显示被选择菜单项的内容
         selectedItem.className = "selectedLi" //给选中的菜单项更改类名 进而更换样式
-    
+
     }
 
-   
+
 </script>
 
 </html>
